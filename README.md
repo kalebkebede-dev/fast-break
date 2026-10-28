@@ -1,43 +1,42 @@
-# Fast Break
+# Fast Break 🏀
 
-![Three.js r128](https://img.shields.io/badge/Three.js-r128-black?logo=threedotjs)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES2020-F7DF1E?logo=javascript&logoColor=black)
-![License: MIT](https://img.shields.io/badge/License-MIT-green)
+A 3D endless runner on a basketball court, made with Three.js.
 
-A 3D endless runner built with Three.js. A basketball rolls down a scrolling court while you dodge defenders, jump low screens, and collect orbs to build a score multiplier.
-
-**[▶ Play in your browser](https://kalebkebede-dev.github.io/fast-break/)** (works on desktop and mobile)
+**Play it here:** https://kalebkebede-dev.github.io/fast-break/ (works on desktop and phones)
 
 ![Fast Break gameplay](docs/gameplay.png)
 
-## Controls
-| Input | Action |
-|---|---|
-| **A / D** or **arrow keys** | Switch lanes (swipe left or right on mobile) |
-| **W / Space / Up** | Jump (swipe up or tap on mobile) |
+## What it is
 
-## Rules
-- Defenders (red) block a lane, so switch lanes to get past them
-- Screens (white) are low, so jump over them
-- Orbs add 25 × your multiplier; every 10 collected in a row raises the multiplier (max x8)
-- Speed ramps up over time and rows get closer together
-- Best score saves in the browser
+You're the ball on a fast break, and the court keeps scrolling at you. Red defenders block a lane, so you have to switch around them. White screens are low, so you jump over them. Blue orbs give bonus points, and grabbing 10 in a row bumps up your multiplier (max x8). The game keeps speeding up until you turn it over.
+
+I wanted to try 3D in the browser without a game engine, so this is plain JavaScript and Three.js in one HTML file.
+
+## Controls
+
+- A / D or arrow keys: switch lanes (swipe on mobile)
+- W, Space or Up: jump (swipe up or tap on mobile)
 
 ## How it works
-- **Game loop:** `requestAnimationFrame` with a capped delta time so slow frames don't break physics.
-- **Movement:** smoothed lane switching plus a gravity-based jump arc; the camera follows the ball for a sense of weight.
-- **Spawner:** every row leaves at least one lane open, so every row is passable, and the gap between rows shrinks as speed increases.
-- **Collision:** distance checks per object type; screens can be cleared by jumping, defenders cannot.
-- **Rendering:** the hardwood floor and ball textures are generated with the Canvas API, so the game ships as one HTML file with no image assets.
-- **Input:** keyboard and touch-swipe handling share the same lane and jump functions.
 
-## Run locally
-Open `index.html` in any modern browser. No build step or install is needed.
+- **Game loop.** It uses `requestAnimationFrame`, with delta time capped so a laggy frame doesn't make the ball teleport through things.
+- **Fair spawning.** Every row of obstacles always leaves at least one lane open, so you never get a row you can't get past. As the speed goes up, the rows also get closer together.
+- **Collisions.** These are simple distance checks, but defenders and screens behave differently: you can jump a screen but not a defender.
+- **No image files.** The hardwood floor and the ball texture are drawn with the Canvas API at runtime and then used as textures.
+- **Mobile.** Swipes and taps call the same functions as the keyboard, so both play the same way.
 
-## Roadmap
-- [ ] Power-ups such as a shield or slow-motion
+## Running it yourself
+
+Just open `index.html` in a browser. There's nothing to install.
+
+## What I want to add next
+
+- [ ] Power-ups (shield, slow-mo)
 - [ ] Sound effects and music
 - [ ] Pause menu and difficulty settings
 
-## License
-MIT
+## Credits
+
+I built the first prototype with help from Claude as an AI pair programmer. The commit history shows what was added when.
+
+MIT License
