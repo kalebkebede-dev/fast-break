@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fast Break Runner</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +20,8 @@
   --font-body: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
   color-scheme: dark;
 }
-html, body { height: 100%; }
+[hidden] { display: none !important; }
+html, body { height: 100%; margin: 0; }
 body {
   background: var(--court);
   color: var(--ink);
@@ -81,6 +87,8 @@ button:focus-visible { outline: 3px solid var(--line); outline-offset: 3px; }
   white-space: nowrap;
 }
 </style>
+</head>
+<body>
 
 <div id="stage"></div>
 
@@ -312,6 +320,7 @@ button:focus-visible { outline: 3px solid var(--line); outline-offset: 3px; }
 
   function gameOver() {
     running = false;
+    score = Math.floor(score);
     const newBest = score > best;
     if (newBest) {
       best = score;
@@ -331,7 +340,7 @@ button:focus-visible { outline: 3px solid var(--line); outline-offset: 3px; }
   }
 
   function updateHud() {
-    ui.score.textContent = score;
+    ui.score.textContent = Math.floor(score);
     ui.mult.textContent = `x${mult}`;
   }
 
@@ -375,7 +384,7 @@ button:focus-visible { outline: 3px solid var(--line); outline-offset: 3px; }
       speed = Math.min(MAX_SPEED, speed + dt * 0.55);
       const dz = speed * dt;
       distance += dz;
-      score += Math.round(dz * mult);
+      score += dz * mult;
 
       // Smooth lane change and jump arc.
       ball.position.x += (targetX - ball.position.x) * Math.min(1, dt * 14);
@@ -447,3 +456,5 @@ button:focus-visible { outline: 3px solid var(--line); outline-offset: 3px; }
   document.getElementById('playBtn').focus();
 })();
 </script>
+</body>
+</html>
