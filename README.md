@@ -35,8 +35,6 @@ Just open `index.html` in a browser. There's nothing to install.
 - [ ] Sound effects and music
 - [ ] Pause menu and difficulty settings
 
-## Credits
+## License
 
-I built the first prototype with help from Claude as an AI pair programmer. The commit history shows what was added when.
-
-MIT License
+MIT
